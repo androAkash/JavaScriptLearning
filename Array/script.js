@@ -121,3 +121,9 @@ const highest = scores.reduce((acc, d) => (d > acc ? d : acc));
 console.log(highest);
 
 //From an array of transactions, find total income > ₹1000
+//Merge Two arrays
+let arr1=[1,2]
+let arr2 = [2,3]
+let arr3 = [...arr1,...arr2]
+console.log(arr3);
+
