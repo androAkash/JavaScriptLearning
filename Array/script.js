@@ -112,8 +112,8 @@ const uesrs = [
     { name: "riya", active: false },
     { name: "rohan", active: true }
 ]
-const activeUsers = uesrs.filter(p=> p.active)
-const activeUsersName = activeUsers.map(p=> p.name.toUpperCase())
+const activeUsers = uesrs.filter(p => p.active)
+const activeUsersName = activeUsers.map(p => p.name.toUpperCase())
 console.log(activeUsersName);
 //Find the highest score using reduce
 const scores = [50, 85, 99, 70];
@@ -121,9 +121,21 @@ const highest = scores.reduce((acc, d) => (d > acc ? d : acc));
 console.log(highest);
 
 //From an array of transactions, find total income > ₹1000
+const transactions = [
+    { type: "income", amount: 1500 },
+    { type: "expense", amount: 400 },
+    { type: "income", amount: 800 },
+    { type: "income", amount: 2200 }
+]
+const totalIncome = transactions
+.filter(p=>p.type === "income" && p.amount > 1000)
+.reduce((acc,d)=> acc + d.amount,0)
+console.log(totalIncome);
+
+
 //Merge Two arrays
-let arr1=[1,2]
-let arr2 = [2,3]
-let arr3 = [...arr1,...arr2]
+let arr1 = [1, 2]
+let arr2 = [2, 3]
+let arr3 = [...arr1, ...arr2]
 console.log(arr3);
 
