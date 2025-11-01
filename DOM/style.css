@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+}
+.main .btn{
+    background-color: rgb(193, 170, 141);
+    color:white;
+    padding: 1vw 1vw;
+    border-radius: 5px;
+    user-select: none;
+}
+.main .btn:hover{
+    background-color: rgb(153, 139, 126);
+}
+.main #file{
+    display: none;
+}
+.main h1{
+  font-size: 10rem;  
+  font-weight: 300;
+  user-select: none;
+}
