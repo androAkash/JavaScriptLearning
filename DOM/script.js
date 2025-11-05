@@ -34,7 +34,7 @@ dropDown.addEventListener("change",(company)=>{
     title.textContent = ` Welcome to ${company.target.value} Akku`
 })
 function cosmaticChanges(s,c,f){
-    title.textContent = s
+    title.textContent = s 
     title.style.color = c
     title.style.fontSize = f
 } 

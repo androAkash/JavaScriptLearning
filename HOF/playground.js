@@ -35,14 +35,18 @@ const orders = [
 
 function eCommerce(orders){
   return orders
-  .filter(d=> d.status === "delivered")
+  .filter(d=> d.status ==="delivered")
   .reduce((totalSales,order)=>{
     const oderTotal = order.items.reduce((sum,item)=> sum + item.price * item.qty,0)
-    return totalSales + oderTotal
-  },0
-)
+    return oderTotal + totalSales
+  },0)
 }
-console.log(eCommerce(orders)); 
+console.log(eCommerce(orders));
+function highValueSales(orders) {
+  
+}
+console.log(highValueSales(orders));
+
 //2️⃣ Students Performance (Nested Data)
 const students = [
   {
