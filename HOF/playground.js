@@ -33,17 +33,27 @@ const orders = [
 // Get list of customers who spent more than ₹2000.
 // Sort all orders by total amount (highest → lowest).
 
-function eCommerce(orders){
+function eCommerce(orders) {
   return orders
-  .filter(d=> d.status ==="delivered")
-  .reduce((totalSales,order)=>{
-    const oderTotal = order.items.reduce((sum,item)=> sum + item.price * item.qty,0)
-    return oderTotal + totalSales
-  },0)
+    .filter(d => d.status === "delivered")
+    .reduce((totalSales, order) => {
+      const oderTotal = order.items.reduce((sum, item) => sum + item.price * item.qty, 0)
+      return oderTotal + totalSales
+    }, 0)
 }
 console.log(eCommerce(orders));
 function highValueSales(orders) {
-  
+  let highValueCustomers = orders
+    .map(order => {
+      const orderTotal = order.items.reduce((sum, item) => sum + item.price * item.qty, 0)
+      return {
+        customer: order.customer, orderTotal,
+        status: order.status
+      }
+    })
+    .filter(order => order.status === "delivered" && order.orderTotal > 2000)
+    .map(order => order.customer)
+  console.log(highValueCustomers);
 }
 console.log(highValueSales(orders));
 
@@ -77,3 +87,43 @@ const students = [
 //Find each student’s average marks using map + reduce.
 // Find topper’s name (highest total marks).
 // Get names of students who scored above 80 in all subjects (every).
+// ┌──────────────────────────────┐
+// │        Original orders       │
+// │   (full data: items, price)  │
+// └──────────────┬───────────────┘
+//                │
+//                ▼
+//         🧩 MAP STEP
+//    "Simplify each order"
+//                │
+//                ▼
+// ┌────────────────────────────────────────────┐
+// │ After map():                               │
+// │ [                                           
+// │   { customer: "Riya", orderTotal: 3600, status: "delivered" },
+// │   { customer: "Raj", orderTotal: 2700, status: "pending" },
+// │   { customer: "Simran", orderTotal: 4300, status: "delivered" }
+// │ ]                                          
+// └────────────────────────────────────────────┘
+//                │
+//                ▼
+//         🔍 FILTER STEP
+//   "Keep only delivered + > 2000"
+//                │
+//                ▼
+// ┌────────────────────────────────────────────┐
+// │ After filter():                            │
+// │ [                                           
+// │   { customer: "Riya", orderTotal: 3600, status: "delivered" },
+// │   { customer: "Simran", orderTotal: 4300, status: "delivered" }
+// │ ]                                          
+// └────────────────────────────────────────────┘
+//                │
+//                ▼
+//         🎯 FINAL MAP STEP
+//      "Extract just the names"
+//                │
+//                ▼
+// ┌──────────────────────────────┐
+// │ ["Riya", "Simran"]          │
+// └──────────────────────────────┘
