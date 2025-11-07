@@ -1,4 +1,45 @@
 // 1️⃣ E-Commerce Orders
+// ┌──────────────────────────────┐
+// │        Original orders       │
+// │   (full data: items, price)  │
+// └──────────────┬───────────────┘
+//                │
+//                ▼
+//         🧩 MAP STEP
+//    "Simplify each order"
+//                │
+//                ▼
+// ┌────────────────────────────────────────────┐
+// │ After map():                               │
+// │ [                                           
+// │   { customer: "Riya", orderTotal: 3600, status: "delivered" },
+// │   { customer: "Raj", orderTotal: 2700, status: "pending" },
+// │   { customer: "Simran", orderTotal: 4300, status: "delivered" }
+// │ ]                                          
+// └────────────────────────────────────────────┘
+//                │
+//                ▼
+//         🔍 FILTER STEP
+//   "Keep only delivered + > 2000"
+//                │
+//                ▼
+// ┌────────────────────────────────────────────┐
+// │ After filter():                            │
+// │ [                                           
+// │   { customer: "Riya", orderTotal: 3600, status: "delivered" },
+// │   { customer: "Simran", orderTotal: 4300, status: "delivered" }
+// │ ]                                          
+// └────────────────────────────────────────────┘
+//                │
+//                ▼
+//         🎯 FINAL MAP STEP
+//      "Extract just the names"
+//                │
+//                ▼
+// ┌──────────────────────────────┐
+// │ ["Riya", "Simran"]          │
+// └──────────────────────────────┘
+
 const orders = [
   {
     orderId: "A101",
@@ -87,43 +128,16 @@ const students = [
 //Find each student’s average marks using map + reduce.
 // Find topper’s name (highest total marks).
 // Get names of students who scored above 80 in all subjects (every).
-// ┌──────────────────────────────┐
-// │        Original orders       │
-// │   (full data: items, price)  │
-// └──────────────┬───────────────┘
-//                │
-//                ▼
-//         🧩 MAP STEP
-//    "Simplify each order"
-//                │
-//                ▼
-// ┌────────────────────────────────────────────┐
-// │ After map():                               │
-// │ [                                           
-// │   { customer: "Riya", orderTotal: 3600, status: "delivered" },
-// │   { customer: "Raj", orderTotal: 2700, status: "pending" },
-// │   { customer: "Simran", orderTotal: 4300, status: "delivered" }
-// │ ]                                          
-// └────────────────────────────────────────────┘
-//                │
-//                ▼
-//         🔍 FILTER STEP
-//   "Keep only delivered + > 2000"
-//                │
-//                ▼
-// ┌────────────────────────────────────────────┐
-// │ After filter():                            │
-// │ [                                           
-// │   { customer: "Riya", orderTotal: 3600, status: "delivered" },
-// │   { customer: "Simran", orderTotal: 4300, status: "delivered" }
-// │ ]                                          
-// └────────────────────────────────────────────┘
-//                │
-//                ▼
-//         🎯 FINAL MAP STEP
-//      "Extract just the names"
-//                │
-//                ▼
-// ┌──────────────────────────────┐
-// │ ["Riya", "Simran"]          │
-// └──────────────────────────────┘
+
+function result(students) {
+  let getNames = students
+  .map(student=>{
+    const totalMarks = student.subjects.reduce((sum,marks)=> sum + marks.marks,0)
+    return {
+      students : student.name , totalMarks
+    }
+  })
+  .filter(highestMarks=> highestMarks.totalMarks)
+  console.log(getNames);
+}
+console.log(result(students));
