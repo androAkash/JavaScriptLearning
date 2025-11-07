@@ -14,17 +14,16 @@ form.addEventListener("submit", (dets) => {
 
     let profile = document.createElement("div")
     profile.classList.add("profile")
-    
+
     let profileImage = document.createElement("img")
-    profileImage.setAttribute("src",
-        "https://images.unsplash.com/photo-1713480958670-c484aca04602?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687")
+    profileImage.setAttribute("src", inputs[0].value)
 
     let name = document.createElement("h3")
-    name.textContent = "Name name"
+    name.textContent = inputs[1].value
     let occupation = document.createElement("h5")
-    occupation.textContent = "Occupation"
+    occupation.textContent = inputs[2].value
     let p = document.createElement("p")
-    p.textContent = "description"
+    p.textContent = inputs[3].value
 
     profile.appendChild(profileImage)
     card.appendChild(profile)
@@ -33,6 +32,11 @@ form.addEventListener("submit", (dets) => {
     card.appendChild(occupation)
     card.appendChild(p)
 
-    main.appendChild(card )
+    main.appendChild(card)
+    inputs.forEach((inp) => {
+        if (inp.type !== "submit") {
+            inp.value = ""
+        }
+    })
     console.log(card);
 })
